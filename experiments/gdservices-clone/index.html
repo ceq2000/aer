@@ -1,4 +1,209 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AI Automation Consultancy</title><link rel="stylesheet" href="style.css"></head>
-<body><a class="skip" href="#main">Skip to content</a><div id="app"></div>
-<script src="site.config.js"></script><script src="app.js"></script></body></html>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GDS 2.0 Concept</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Nunito+Sans:wght@400;600&display=swap">
+<style>
+/* Layout: alternating navy and white bands, bold geometric headlines, two-column text + graphic, blue-to-purple accents. Committed single look. */
+:root{--navy:#0c1630;--navy2:#111d3d;--ink:#0b1020;--paper:#ffffff;--soft:#f3f5fa;--blue:#2f6db5;--indigo:#4a55b0;--purple:#7b3f98;--cyan:#6fc3ff;--mut:#55607a;--mutd:#a9b4d0;--line:#dfe4ef;--red:#b3261e;--amber:#d9882e;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.7 "Nunito Sans",system-ui,sans-serif;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3,.nav a,.btn,.kick{font-family:Montserrat,system-ui,sans-serif}
+a{color:inherit}
+.band{margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);padding-left:max(16px,calc(50vw - 560px));padding-right:max(16px,calc(50vw - 560px))}
+.navy{background:var(--navy);color:#fff}.navy2{background:var(--navy2);color:#fff}.soft{background:var(--soft)}
+@supports not (width:1svw){.band{margin:0}}
+header.band{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:18px}
+.logo{font:800 24px Montserrat,sans-serif;letter-spacing:1px}.logo i{font-style:normal;font-size:11px;margin-left:6px;padding:2px 7px;border-radius:6px;background:linear-gradient(90deg,var(--blue),var(--purple))}
+.nav{display:flex;gap:26px;flex-wrap:wrap}.nav a{font-size:13px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:#dbe3f7;font-weight:600}
+.btn{display:inline-block;background:#fff;color:var(--blue);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:13px;padding:13px 26px;border-radius:999px;text-decoration:none;border:0;cursor:pointer}
+.btn.line{background:transparent;color:#fff;border:1.5px solid #5d6e9c}.btn.dark{background:var(--blue);color:#fff}
+section.band{padding-block:72px}
+h1{font-size:clamp(34px,6vw,62px);line-height:1.08;margin:12px 0 18px;font-weight:800;text-wrap:balance}
+h2{font-size:clamp(28px,4.4vw,46px);line-height:1.12;margin:0 0 28px;font-weight:800;text-wrap:balance}
+h3{font-size:18px;margin:0 0 6px}
+.kick{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--amber);margin:0}
+.soft .kick,.paper .kick{color:var(--blue)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:48px;align-items:center}
+.two>*{min-width:0}
+.sub{font-size:20px;color:#dbe3f7;margin:0 0 6px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.hero svg,.fig svg{width:100%;height:auto;display:block}
+.txt p{margin:0 0 16px;color:var(--mut)}.txt p b{color:var(--ink)}
+.navy .txt p,.navy2 .txt p{color:var(--mutd)}.navy .txt p b,.navy2 .txt p b{color:#fff}
+.icons{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:28px 12px;text-align:center}
+.icons div{font:700 12px Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.icons svg{display:block;margin:0 auto 12px;width:56px;height:56px;color:var(--ink)}
+.ctr{text-align:center}
+.mock{background:#0a1226;border:1px solid #243158;border-radius:14px;padding:14px;color:#fff;font-size:13px}
+.mock .top{display:flex;gap:6px;margin-bottom:12px}.mock .top i{width:8px;height:8px;border-radius:50%;background:#2a3965}
+.mock .big{display:grid;grid-template-columns:110px minmax(0,1fr);gap:14px;align-items:center}
+.mock .row{display:flex;justify-content:space-between;gap:8px;padding:9px 10px;border-radius:8px;background:#121c38;margin-top:6px}
+.mock .row span:last-child{color:#7fe3b0;font-weight:700}
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:18px}
+.tier{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px}.tier p{margin:0;color:var(--mut)}
+.tl{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));margin-top:34px;border-top:2px solid var(--line)}
+.tl div{position:relative;padding:16px 10px 0 0}.tl div::before{content:"";position:absolute;top:-8px;left:0;width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--purple))}
+.tl b{display:block;font:700 12px Montserrat,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}.tl span{color:var(--mut)}
+.note{font-size:13px;color:var(--mut);margin:14px 0 0}
+details{border-bottom:1px solid var(--line);padding:16px 0}summary{cursor:pointer;font:700 17px Montserrat,sans-serif}details p{margin:10px 0 0;color:var(--mut)}
+.chk{list-style:none;padding:0;margin:0 0 8px}.chk li{padding:6px 0 6px 32px;position:relative;color:#dbe3f7}.chk li::before{content:"";position:absolute;left:4px;top:14px;width:13px;height:7px;border-left:3px solid var(--amber);border-bottom:3px solid var(--amber);transform:rotate(-45deg)}
+form{display:grid;gap:12px;max-width:520px}
+input,textarea{padding:13px;border-radius:10px;border:1px solid #3a4a78;background:#0a1226;color:#fff;font:inherit;width:100%}
+.btn:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+footer.band{padding-block:28px;font-size:14px;color:var(--mutd)}
+.pulse{animation:pl 3s ease-in-out infinite}@keyframes pl{50%{opacity:.55}}
+@media (prefers-reduced-motion:reduce){.pulse{animation:none}}
+.btn.amber{background:var(--amber);color:#0c1630;border-radius:4px;text-transform:none;letter-spacing:0;font-size:16px}
+.navy .tier,.navy2 .tier{background:linear-gradient(160deg,#14224a,#0f1b3a);border-color:#2a3a6a;border-radius:18px}
+.navy .tier h3{color:var(--amber);font-size:20px}.navy .tier p{color:#c3cde6}
+.navy .tl{border-top-color:transparent;position:relative}.navy .tl::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:#2a3a6a}
+.navy .tl div::before{background:var(--amber);top:-6px;width:12px;height:12px}.navy .tl b{color:var(--amber)}.navy .tl span{color:#c3cde6}
+.navy .note{color:var(--mutd)}
+.white3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:20px}
+.wc{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px}.wc h3{color:var(--blue);font-size:20px}.wc p{margin:0;color:var(--ink)}
+.closing{max-width:640px;margin:36px auto 0;text-align:center;font-weight:700;color:#3c465e}
+#faq h2{text-align:center;color:var(--navy)}
+#faq details{max-width:840px;margin:0 auto;border-bottom:1px solid #cfd5e3;padding:22px 0}#faq details:first-of-type{border-top:1px solid #cfd5e3}
+#faq summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:19px;color:var(--navy)}
+#faq summary::-webkit-details-marker{display:none}
+#faq summary::after{content:"+";font:400 30px/1 Nunito Sans,sans-serif;color:var(--blue);flex:none;transition:transform .2s}
+#faq details[open] summary::after{transform:rotate(45deg)}
+form.card{background:#fff;color:var(--ink);border-radius:22px;padding:30px;max-width:none;gap:14px;box-shadow:0 20px 50px #0006}
+form.card label{display:grid;gap:6px;font-size:15px;color:#6b7387;min-width:0}
+form.card input,form.card select,form.card textarea{background:#f4f5f7;color:var(--ink);border:1px solid #cfd5e3;border-radius:8px;padding:12px;font:inherit;width:100%;min-width:0}
+.fr{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:14px}
+form.card input:focus-visible,form.card select:focus-visible,form.card textarea:focus-visible{outline:2px solid var(--blue)}
+.feed{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:34px;margin-top:40px}
+.post{background:#fff;border:1px solid #e6e9f2;border-radius:6px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;min-width:0}
+.post:hover{transform:translateY(-3px);box-shadow:0 10px 28px #0b102022}
+.post svg{display:block;width:100%;aspect-ratio:16/10;height:auto}
+.post .b{padding:24px 26px 28px;display:flex;flex-direction:column;gap:10px;flex:1}
+.post h3{font:700 19px/1.3 Montserrat,sans-serif;margin:0}.post p{margin:0;color:var(--mut);font-size:16px}
+.post a{margin-top:auto;font:700 14px Montserrat,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);text-decoration:none;padding-top:6px}
+.post a:hover{text-decoration:underline}
+footer.ft{padding-block:34px 40px;color:var(--mutd);font-size:15px}
+.ft1{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;padding-bottom:26px;border-bottom:1px solid #2a3a6a}
+.ft1 .logo{color:#fff}.ft1 address{font-style:normal;text-align:right;line-height:1.7}
+.ft2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:22px;align-items:center;padding-top:26px}
+.ft2>*{min-width:0}.ft2 nav{display:flex;gap:18px;flex-wrap:wrap}.ft2 nav a{color:var(--mutd);text-decoration:none}.ft2 nav a:hover,.ai a:hover{color:#fff}
+.ai{text-align:center;display:grid;gap:10px}.ai div{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.ai a{color:#dbe3f7;border:1px solid #3a4a78;border-radius:999px;padding:6px 14px;text-decoration:none;font-size:14px}
+.cp{text-align:right}
+@media(max-width:700px){.ft1 address,.cp{text-align:left}.ai{text-align:left}.ai div{justify-content:flex-start}}
+</style>
+
+<header class="band navy"><span class="logo">GDS<i>2.0</i></span>
+<nav class="nav"><a href="#fit">Who it's for</a><a href="#how">How it works</a><a href="#engage">Engage</a><a href="#faq">FAQ</a><a href="#feed">Feed</a></nav>
+<a class="btn" href="#contact">Get started</a></header>
+
+<section class="band navy hero" style="padding-block:64px 80px"><div class="two">
+<div><p class="kick">Announcing GDS 2.0</p>
+<h1>From AI ideas to AI that does the work.</h1>
+<p class="sub">AI shows you what to fix.</p><p class="sub" style="color:#fff;font-weight:700">GDS makes it happen.</p>
+<div class="cta"><a class="btn" href="#contact">Book a free AI audit</a><a class="btn line" href="#how">See how it works</a></div></div>
+<div aria-hidden="true"><svg viewBox="0 0 420 380"><defs>
+<radialGradient id="core"><stop offset="0" stop-color="#ffb26b"/><stop offset=".55" stop-color="#e2573f" stop-opacity=".9"/><stop offset="1" stop-color="#e2573f" stop-opacity="0"/></radialGradient>
+<radialGradient id="gl"><stop offset="0" stop-color="#6fc3ff" stop-opacity=".35"/><stop offset="1" stop-color="#6fc3ff" stop-opacity="0"/></radialGradient></defs>
+<circle cx="210" cy="190" r="180" fill="url(#gl)"/>
+<g stroke="#6fc3ff" stroke-width="1.5" fill="none" opacity=".8">
+<circle cx="210" cy="190" r="120" stroke-dasharray="3 7"/><circle cx="210" cy="190" r="70"/>
+<path d="M210 190 L70 90 M210 190 L350 80 M210 190 L370 220 M210 190 L330 330 M210 190 L110 320 M210 190 L45 230 M210 190 L210 30"/></g>
+<g fill="#0c1630" stroke="#6fc3ff" stroke-width="2"><circle cx="70" cy="90" r="20"/><circle cx="350" cy="80" r="20"/><circle cx="370" cy="220" r="20"/><circle cx="330" cy="330" r="20"/><circle cx="110" cy="320" r="20"/><circle cx="45" cy="230" r="20"/><circle cx="210" cy="30" r="20"/></g>
+<circle class="pulse" cx="210" cy="190" r="48" fill="url(#core)"/><circle cx="210" cy="190" r="30" fill="#0c1630" stroke="#ffd1a1" stroke-width="3"/>
+<text x="210" y="196" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="800" font-size="16" fill="#fff">AI</text></svg></div>
+</div></section>
+
+<section class="band" id="three" style="padding-block:56px 24px"><div class="fig" style="max-width:760px;margin:0 auto" role="img" aria-label="Three connected ideas: your tools and data, Claude agents, human judgement"><svg viewBox="0 0 760 240"><defs>
+<linearGradient id="r1" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#c0462f"/><stop offset="1" stop-color="#8e3f9e"/></linearGradient>
+<linearGradient id="r2" x1="0" x2="1"><stop offset="0" stop-color="#a24a8a"/><stop offset=".5" stop-color="#7b3f98"/><stop offset="1" stop-color="#4a55b0"/></linearGradient>
+<linearGradient id="r3" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#5a4fb5"/><stop offset="1" stop-color="#0f6fbf"/></linearGradient></defs>
+<g fill="none" stroke-width="14"><circle cx="130" cy="120" r="105" stroke="url(#r1)"/><circle cx="380" cy="120" r="105" stroke="url(#r2)"/><circle cx="630" cy="120" r="105" stroke="url(#r3)"/></g>
+<g font-family="Montserrat,sans-serif" font-weight="700" font-size="17" text-anchor="middle" fill="#0b1020"><text x="130" y="114">Your tools</text><text x="130" y="136">and data</text><text x="380" y="114">Claude</text><text x="380" y="136">agents</text><text x="630" y="114">Human</text><text x="630" y="136">judgement</text></g></svg></div>
+<p class="ctr" style="max-width:560px;margin:8px auto 0;color:var(--mut)">We connect your data, put Claude to work on it, and keep a person in charge. <b style="color:var(--ink)">You stay in command. We handle the rest.</b></p></section>
+
+<section class="band" id="imagine"><div class="two">
+<div class="fig" role="img" aria-label="Diagram: work flows from sources through your teams to customers"><svg viewBox="0 0 520 300"><defs><linearGradient id="cg" x1="0" x2="1"><stop offset="0" stop-color="#2f6db5"/><stop offset="1" stop-color="#7b3f98"/></linearGradient></defs>
+<g stroke="#9aa6c4" stroke-width="2" fill="none"><path d="M114 150 H396 M222 100 L282 130 M222 200 L282 170"/></g>
+<g fill="url(#cg)"><circle cx="70" cy="150" r="44"/><circle cx="190" cy="80" r="44"/><circle cx="190" cy="220" r="44"/><circle cx="310" cy="150" r="44"/><circle cx="440" cy="150" r="44"/></g>
+<g font-family="Nunito Sans,sans-serif" font-size="12" fill="#fff" text-anchor="middle"><text x="70" y="154">Inbox</text><text x="190" y="84">Documents</text><text x="190" y="224">Apps</text><text x="310" y="147">Claude</text><text x="310" y="162">agents</text><text x="440" y="147">Done,</text><text x="440" y="162">on time</text></g></svg></div>
+<div class="txt"><h2>Imagine your busywork, handled.</h2>
+<p>Most teams lose hours to copying, checking and chasing. <b>GDS builds AI automations</b> that do it for you and ask a person only when it matters.</p>
+<p>Your email, documents and apps feed one workflow. Claude reads, decides and acts. You stay in control.</p></div></div></section>
+
+<section class="band soft" id="fit"><h2 class="ctr">Where it fits</h2>
+<div class="icons">
+<div><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="6"/><path d="M24 6v6M24 36v6M6 24h6M36 24h6M11 11l4 4M33 33l4 4M37 11l-4 4M15 33l-4 4"/></svg>Operations</div>
+<div><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 10h36v22H20l-8 8v-8H6z"/><path d="M14 18h20M14 25h12"/></svg>Support</div>
+<div><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="17"/><path d="M29 17c-1-2-3-3-5-3-3 0-5 2-5 4s2 3 5 4 5 2 5 4-2 4-5 4c-2 0-4-1-5-3M24 10v28"/></svg>Finance</div>
+<div><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 40V8M6 40h36"/><path d="M12 32l9-10 7 6 12-16"/></svg>Sales</div>
+<div><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="16" r="7"/><circle cx="34" cy="20" r="5"/><path d="M4 40c0-8 6-12 14-12s14 4 14 12M32 30c6 0 12 3 12 10"/></svg>People</div>
+<div><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h24v20H4zM28 20h10l6 7v5H28z"/><circle cx="13" cy="35" r="4"/><circle cx="36" cy="35" r="4"/></svg>Logistics</div>
+<div><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4l16 6v12c0 10-7 17-16 20C15 39 8 32 8 22V10z"/><path d="M17 24l5 5 9-10"/></svg>Security</div>
+<div><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 36a8 8 0 010-16 10 10 0 0119-2 8 8 0 011 18z"/></svg>Cloud</div>
+</div></section>
+
+<section class="band navy2" id="how"><div class="two">
+<div class="fig"><div class="mock" role="img" aria-label="Example automation dashboard"><div class="top"><i></i><i></i><i></i></div>
+<div class="big"><svg viewBox="0 0 100 100" width="110" height="110"><circle cx="50" cy="50" r="38" fill="none" stroke="#243158" stroke-width="16"/><circle cx="50" cy="50" r="38" fill="none" stroke="#6fc3ff" stroke-width="16" stroke-dasharray="110 239" transform="rotate(-90 50 50)"/><circle cx="50" cy="50" r="38" fill="none" stroke="#b46bd6" stroke-width="16" stroke-dasharray="70 239" stroke-dashoffset="-110" transform="rotate(-90 50 50)"/><text x="50" y="55" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">Today</text></svg>
+<div><b>Automation inbox</b><div class="row"><span>Invoices checked</span><span>Done</span></div><div class="row"><span>Support tickets routed</span><span>Done</span></div><div class="row"><span>Contract summary</span><span style="color:#ffd27f">Needs approval</span></div></div></div>
+<p style="margin:12px 0 0;color:#8fa0cc;font-size:12px">Illustrative example</p></div></div>
+<div class="txt"><p class="kick">How it works</p><h2>Human judgement at machine speed.</h2>
+<p><b>From insight to action. Automatically.</b> Knowing what to do is only half the battle.</p>
+<p>The agent spots the work, drafts the action and routes it to the right person for approval. Once approved, it carries the work across your connected systems.</p>
+<p><b>You stay in command. We handle the coordination.</b></p></div></div></section>
+
+<section class="band" id="anatomy"><h2>The anatomy of an AI automation</h2>
+<p style="max-width:700px;color:var(--mut)">It sits on top of the systems you already use. It connects your data, applies the rules of your business and takes action.</p>
+<div class="fig" style="max-width:860px;margin-top:24px;border:1px solid var(--line);border-radius:12px;padding:18px"><svg viewBox="0 0 700 330" role="img" aria-label="Layered architecture: interaction, workflows, intelligence, your systems">
+<defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8z" fill="#222"/></marker></defs>
+<g font-family="Montserrat,sans-serif" font-weight="700" font-size="14" text-anchor="middle">
+<text x="70" y="52" fill="#2f6db5">Interaction</text><text x="70" y="127" fill="#7b3f98">Workflows</text><text x="70" y="202" fill="#b3261e">Intelligence</text><text x="70" y="282" fill="#222">Your systems</text>
+<rect x="150" y="14" width="400" height="66" rx="3" fill="none" stroke="#2f6db5" stroke-width="2.5"/><text x="350" y="40" fill="#2f6db5">Chat, approvals, notifications</text><text x="350" y="64" fill="#2f6db5" font-size="12" font-weight="600">Where your people stay in control</text>
+<rect x="150" y="92" width="400" height="66" rx="3" fill="none" stroke="#7b3f98" stroke-width="2.5"/><text x="350" y="118" fill="#7b3f98">Your processes and rules</text><text x="350" y="142" fill="#7b3f98" font-size="12" font-weight="600">Configured for your business</text>
+<rect x="150" y="170" width="400" height="66" rx="3" fill="none" stroke="#b3261e" stroke-width="2.5"/><text x="350" y="196" fill="#b3261e">Claude agents</text><text x="350" y="220" fill="#b3261e" font-size="12" font-weight="600">Read, decide, act</text>
+<rect x="150" y="248" width="400" height="66" rx="3" fill="none" stroke="#222" stroke-width="2.5"/>
+<g fill="none" stroke="#222" stroke-width="1.5" font-size="13"><rect x="170" y="262" width="95" height="38"/><rect x="278" y="262" width="95" height="38"/><rect x="386" y="262" width="95" height="38"/></g>
+<g font-size="13" fill="#222" font-weight="600"><text x="217" y="286">Email</text><text x="325" y="286">Documents</text><text x="433" y="286">Apps</text></g></g>
+<path d="M512 248 V236" stroke="#222" stroke-width="1.5" marker-end="url(#ar)"/></svg></div></section>
+
+<section class="band navy" id="engage"><p class="kick">Engagement</p><h2>Three ways to work with us.</h2><div class="tiers">
+<div class="tier"><h3>Audit</h3><p>Find the first workflow worth automating.</p></div>
+<div class="tier"><h3>Build</h3><p>A working automation or agent, shipped and handed over.</p></div>
+<div class="tier"><h3>Partner</h3><p>Ongoing engineering as your automation grows.</p></div></div>
+<div class="tl"><div><b>Step 1</b><span>Audit</span></div><div><b>Step 2</b><span>Prototype</span></div><div><b>Step 3</b><span>Production</span></div><div><b>Step 4</b><span>Handover</span></div></div>
+<p class="note">Example engagement. Timing is set after the audit.</p><div class="cta"><a class="btn amber" href="#contact">Let's talk! →</a></div></section>
+
+<section class="band soft" id="baseline"><p class="kick" style="color:var(--blue)">Results</p><h2>Clear goals before we begin.</h2><p style="max-width:640px;color:var(--mut)">We agree what success looks like first, so every gain is measured against a starting point, not guessed.</p><div class="white3" style="margin-top:28px"><div class="wc"><h3>Agree the goal</h3><p>Hours saved, errors avoided or cycle time cut. We pick one and write it down.</p></div><div class="wc"><h3>Set the baseline</h3><p>We measure how the work runs today, in your own data.</p></div><div class="wc"><h3>Measure the result</h3><p>After launch we report against the baseline, so you can see the change.</p></div></div></section>
+
+<section class="band" id="faq"><h2>Frequently asked questions</h2>
+<details><summary>Where do we start?</summary><p>A free AI audit. We map your workflows and pick the first one worth automating.</p></details>
+<details><summary>Do we need engineers on our side?</summary><p>No. We build and run it, and train your team to extend it.</p></details>
+<details><summary>Will it replace our systems?</summary><p>No. It works on top of the tools you already use.</p></details>
+<details><summary>How fast can we see something working?</summary><p>Prototypes in days. We scope production timelines after the audit.</p></details></section>
+
+<section class="band soft" id="feed"><h2 class="ctr" style="margin-bottom:0">The GDS Feed</h2>
+<div class="feed">
+<article class="post"><svg viewBox="0 0 320 200" aria-hidden="true"><rect width="320" height="200" fill="#e9ecf3"/><g fill="#fff"><circle cx="70" cy="60" r="34"/><circle cx="170" cy="110" r="40"/><circle cx="260" cy="55" r="30"/><circle cx="90" cy="150" r="28"/></g><g fill="#2f6db5"><rect x="52" y="48" width="36" height="22" rx="3"/><rect x="150" y="98" width="40" height="24" rx="3"/><rect x="246" y="45" width="28" height="18" rx="3"/><rect x="76" y="140" width="28" height="18" rx="3"/></g><g fill="#7b3f98"><circle cx="70" cy="44" r="7"/><circle cx="170" cy="90" r="8"/><circle cx="260" cy="38" r="6"/><circle cx="90" cy="132" r="6"/></g></svg><div class="b"><h3>Where mid-sized companies should start with AI automation</h3><p>Pick one repetitive workflow, set a baseline and prove the gain before you scale…</p><a href="#feed">Read more…</a></div></article>
+<article class="post"><svg viewBox="0 0 320 200" aria-hidden="true"><defs><linearGradient id="f2" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#2f6db5"/><stop offset="1" stop-color="#7b3f98"/></linearGradient></defs><rect width="320" height="200" fill="#0c1630"/><g stroke="#6fc3ff" stroke-opacity=".5" fill="none"><path d="M0 150 L320 40 M0 190 L320 80 M0 110 L320 0"/></g><g fill="url(#f2)"><rect x="40" y="100" width="40" height="70" rx="4"/><rect x="100" y="70" width="40" height="100" rx="4"/><rect x="160" y="85" width="40" height="85" rx="4"/><rect x="220" y="40" width="40" height="130" rx="4"/></g><circle cx="240" cy="30" r="9" fill="#d9882e"/></svg><div class="b"><h3>Building with Claude Cowork: what we learned shipping fast</h3><p>How small teams go from idea to a working internal tool in days, not months…</p><a href="#feed">Read more…</a></div></article>
+<article class="post"><svg viewBox="0 0 320 200" aria-hidden="true"><rect width="320" height="200" fill="#050a1a"/><g stroke="#6fc3ff" fill="none" stroke-width="1.5"><circle cx="160" cy="100" r="70" stroke-dasharray="3 6"/><circle cx="160" cy="100" r="35"/><path d="M160 100 L60 40 M160 100 L270 50 M160 100 L260 160 M160 100 L70 160"/></g><g fill="#0c1630" stroke="#6fc3ff" stroke-width="2"><circle cx="60" cy="40" r="10"/><circle cx="270" cy="50" r="10"/><circle cx="260" cy="160" r="10"/><circle cx="70" cy="160" r="10"/></g><circle cx="160" cy="100" r="14" fill="#d9882e"/></svg><div class="b"><h3>Measuring the return on an automation before you build it</h3><p>A simple way to size the hours, errors and delays you can take out of a process…</p><a href="#feed">Read more…</a></div></article>
+</div><p class="note ctr" style="margin-top:28px">Sample posts for the concept. Replace with real articles.</p></section>
+
+<section class="band navy" id="contact" style="background:linear-gradient(180deg,#1a2d5e 0,var(--navy) 55%)"><div class="two" style="align-items:start">
+<div style="padding-top:24px"><h2 style="font-size:clamp(34px,5vw,56px)">What should your team stop doing by hand?</h2>
+<p style="color:#dbe3f7;font-size:19px;margin:0 0 22px">Every team has work that eats time and adds nothing. A free AI audit shows exactly which work to automate first. No new infrastructure needed.</p>
+<ul class="chk"><li>A short list of the workflows worth automating</li><li>The first one we would build, and why</li><li>A clear goal and baseline to measure against</li></ul></div>
+<form id="f" class="card"><p class="kick" style="color:var(--blue);text-align:center;letter-spacing:.2em;margin-bottom:6px">Request your assessment</p>
+<div class="fr"><label>First name*<input id="fn" required></label><label>Last name*<input id="ln" required></label></div>
+<label>Work email*<input id="e" type="email" required></label>
+<div class="fr"><label>Company*<input id="co" required></label><label>Focus area*<select id="fa" required><option value=""></option><option>Operations</option><option>Support</option><option>Finance</option><option>Sales</option><option>People</option><option>Logistics</option><option>Security</option><option>Cloud</option></select></label></div>
+<label>What would you like to solve?<textarea id="m" rows="3"></textarea></label>
+<button class="btn dark" id="s" type="submit" style="justify-self:center;border-radius:4px;text-transform:none;letter-spacing:.04em;font-size:17px;padding:14px 36px">Get started</button><small id="ok" hidden style="color:var(--mut);text-align:center">Concept page: nothing was sent.</small></form></div></section>
+
+<footer class="band navy2 ft"><div class="ft1"><span class="logo">GDS<i>2.0</i></span><address>Your Company, Inc.<br>Street address, City, State ZIP</address></div>
+<div class="ft2"><nav aria-label="Footer"><a href="#contact">Legal</a><a href="#contact">Contact</a><a href="#contact">Careers</a><a href="#contact">LinkedIn</a><a href="#contact">X</a></nav>
+<div class="ai"><span>Request an AI summary of GDS</span><div><a href="https://claude.ai" rel="noopener">Claude</a><a href="https://chatgpt.com" rel="noopener">ChatGPT</a><a href="https://gemini.google.com" rel="noopener">Gemini</a><a href="https://www.perplexity.ai" rel="noopener">Perplexity</a></div></div>
+<span class="cp">© 2026 Your Company, Inc.</span></div></footer>
+<script>document.getElementById('f').addEventListener('submit',function(e){e.preventDefault();this.reset();document.getElementById('ok').hidden=false})</script>
+
+</html>

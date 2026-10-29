@@ -1,3 +1,4 @@
-# gdservices.io clone (repositioned as AI automation consultancy)
-Static site; open `index.html`. Edit `site.config.js` to change copy/branding.
-Structure and copy are derived from a text-only fetch of the public homepage; exact CSS, fonts and images were not obtainable (network blocked for crawlers), so the visual style is an approximation. Testimonial text is placeholder.
+# GDS 2.0 concept site
+Single-file static page. Open `index.html` in a browser.
+Visual concept for repositioning GDS as an AI automation consultancy. Company name, address, case studies and blog posts are placeholders.
+Style is inspired by the structure of r4.ai; all graphics and copy are original.
