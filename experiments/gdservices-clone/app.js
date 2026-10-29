@@ -2,6 +2,7 @@ const S = window.SITE, $ = (h) => h;
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
 document.getElementById("app").innerHTML = `
 <header><b class="logo">${esc(S.brand)}</b><nav>${S.nav.map(n => `<a href="#${n.toLowerCase().replace(/\W+/g,"-")}">${esc(n)}</a>`).join("")}<a href="${S.linkedin}">LinkedIn</a></nav></header>
+<aside class="internal"><b>${esc(S.internal.title)}</b><div class="grid4">${S.internal.points.map(([t,d]) => `<div><h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join("")}</div></aside>
 <main id="main">
 <section class="hero" id="home"><h1>${esc(S.hero)}</h1><a class="btn" href="${S.calendly}">${esc(S.heroCta)}</a></section>
 <section class="pitch"><h2>${esc(S.pitchTitle)}</h2><p>${esc(S.pitch)}</p>

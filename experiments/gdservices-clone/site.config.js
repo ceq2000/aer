@@ -21,5 +21,13 @@ window.SITE = {
     ["Placeholder testimonial two.","Name","Role, Company"],
     ["Placeholder testimonial three.","Name","Role, Company"]],
   posts: ["Placeholder post: where mid-sized companies should start with AI automation","Placeholder post: vibe coding with Claude Cowork in client work","Placeholder post: measuring ROI on automation"],
+  internal: {
+    title: "Internal proposal for Zaida: AI professional services for mid-sized companies",
+    points: [
+      ["Why now","Our team sees strong demand from mid-sized companies for AI automation (add supporting evidence: inbound requests, market data)."],
+      ["Why us","We already have consulting, system development and integration experience, and we build fast with Claude and Claude Cowork."],
+      ["Why it matters","SkillCertify is still in Beta and needs more work. Services revenue gives us income now while the product matures."],
+      ["The ask","Approval to launch AI-focused professional services under GDS. (Add scope, pricing and pilot targets.)"]]
+  },
   nav: ["Home","Services","Success Stories","About","Blog","Contact","Privacy Policy"],
 };
