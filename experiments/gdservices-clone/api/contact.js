@@ -1,7 +1,7 @@
 // Vercel serverless function: emails the contact form to the inbox via Resend.
 // Env vars (Vercel > Project > Settings > Environment Variables):
 //   RESEND_API_KEY  required
-//   CONTACT_TO      optional, defaults to NexusLocal1@gmail.com
+//   CONTACT_TO      optional, defaults to ceq@me.com (the Resend test sender only delivers to the account owner)
 //   CONTACT_FROM    optional, defaults to Resend's onboarding sender
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
     headers: { Authorization: 'Bearer ' + process.env.RESEND_API_KEY, 'Content-Type': 'application/json' },
     body: JSON.stringify({
       from: process.env.CONTACT_FROM || 'GDS 2.0 <onboarding@resend.dev>',
-      to: [process.env.CONTACT_TO || 'NexusLocal1@gmail.com'],
+      to: [process.env.CONTACT_TO || 'ceq@me.com'],
       reply_to: email,
       subject: 'GDS 2.0 contact form: ' + name,
       html: '<p><b>Name:</b> ' + esc(name) + '</p><p><b>Email:</b> ' + esc(email) + '</p><p><b>Message:</b></p><p>' + esc(message).replace(/\n/g, '<br>') + '</p>',
