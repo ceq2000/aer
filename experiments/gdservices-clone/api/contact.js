@@ -9,10 +9,14 @@ module.exports = async (req, res) => {
   if (req.method !== 'POST') return res.status(405).json({ success: false });
   const b = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : req.body || {};
   if (b._honey) return res.status(200).json({ success: true });
-  const name = String(b.name || '').trim().slice(0, 200);
+  const first = String(b.first_name || '').trim().slice(0, 100);
+  const last = String(b.last_name || '').trim().slice(0, 100);
+  const name = (first + ' ' + last).trim();
+  const company = String(b.company || '').trim().slice(0, 200);
+  const focus = String(b.focus || '').trim().slice(0, 100);
   const email = String(b.email || '').trim().slice(0, 200);
   const message = String(b.message || '').trim().slice(0, 5000);
-  if (!name || !message || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return res.status(400).json({ success: false });
+  if (!first || !last || !company || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return res.status(400).json({ success: false });
   if (!process.env.RESEND_API_KEY) return res.status(500).json({ success: false });
   const r = await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -21,8 +25,8 @@ module.exports = async (req, res) => {
       from: process.env.CONTACT_FROM || 'GDS 2.0 <onboarding@resend.dev>',
       to: [process.env.CONTACT_TO || 'ceq@me.com'],
       reply_to: email,
-      subject: 'GDS 2.0 contact form: ' + name,
-      html: '<p><b>Name:</b> ' + esc(name) + '</p><p><b>Email:</b> ' + esc(email) + '</p><p><b>Message:</b></p><p>' + esc(message).replace(/\n/g, '<br>') + '</p>',
+      subject: 'GDS 2.0 contact form: ' + name + (company ? ' (' + company + ')' : ''),
+      html: '<p><b>Name:</b> ' + esc(name) + '</p><p><b>Email:</b> ' + esc(email) + '</p><p><b>Company:</b> ' + esc(company) + '</p><p><b>Focus area:</b> ' + esc(focus) + '</p><p><b>What they want to solve:</b></p><p>' + esc(message).replace(/\n/g, '<br>') + '</p>',
     }),
   });
   return res.status(r.ok ? 200 : 502).json({ success: r.ok });
